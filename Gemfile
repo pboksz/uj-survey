@@ -26,9 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -50,4 +47,8 @@ end
 
 group :test do
   gem 'database_cleaner'
+end
+
+group :development, :production do
+  gem 'unicorn'
 end
