@@ -3,6 +3,10 @@ class Admin::SurveysController < ApplicationController
     render :index, locals: { surveys: survey_repository.all }
   end
 
+  def new
+
+  end
+
   private
 
   def survey_repository

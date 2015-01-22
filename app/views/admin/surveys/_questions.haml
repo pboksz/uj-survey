@@ -1,0 +1,14 @@
+.questions
+  .question{ 'ng-repeat' => 'question in survey.questions | orderBy:"order"' }
+    %h3 Question {{question.order + 1}}
+
+    .field
+      %input{ 'ng-model' => 'question.kind' }
+    .field
+      %input{ 'ng-model' => 'question.text' }
+
+    = render 'answers'
+
+  .actions
+    %button{ 'ng-click' => 'addQuestion(survey.questions)' } +
+    %button{ 'ng-click' => 'removeQuestion(survey.questions)' } -

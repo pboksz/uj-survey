@@ -1,0 +1,9 @@
+.survey{ 'ng-controller' => 'SurveysController' }
+  %h2 New survey
+  .field
+    %label
+    %input{ 'ng-model' => 'survey.title' }
+  .field
+    %input{ 'ng-model' => 'survey.description' }
+
+  = render 'questions'
