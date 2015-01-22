@@ -6,7 +6,7 @@ angular.module('ujSurvey').controller 'SurveysController', [
       questions.push(Question.new(questions.length))
 
     $scope.removeQuestion = (questions) ->
-      questions.pop() unless question.length == 1
+      questions.pop() unless questions.length == 1
 
     $scope.addAnswer = (answers) ->
       answers.push(Answer.new(answers.length))
