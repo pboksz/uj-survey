@@ -1,1 +1,1 @@
-angular.module('ujSurvey', ['ngResource'])
+angular.module('ujSurvey', [])

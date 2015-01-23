@@ -1,12 +1,10 @@
 .survey{ 'ng-controller' => 'SurveysController' }
   %h2 New survey
-  .field
-    %label
-    %input{ 'ng-model' => 'survey.title' }
-  .field
-    %input{ 'ng-model' => 'survey.description' }
 
-  = render 'questions'
+  = form_tag admin_surveys_path, method: :post do |f|
+    .field= text_field_tag 'survey[title]', '', 'ng-model' => 'survey.title'
+    .field= text_area_tag 'survey[description]', '', 'ng-model' => 'survey.description'
 
-  .actions
-    %button{ 'ng-click' => 'saveSurvey()' } Save
+    = render 'questions'
+
+    .actions= submit_tag 'Save'

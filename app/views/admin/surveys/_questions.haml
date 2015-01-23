@@ -2,13 +2,12 @@
   .question{ 'ng-repeat' => 'question in survey.questions | orderBy:"order"' }
     %h3 Question {{question.order + 1}}
 
-    .field
-      %input{ 'ng-model' => 'question.kind' }
-    .field
-      %input{ 'ng-model' => 'question.text' }
+    = hidden_field_tag 'survey[questions][][order]', '', 'ng-model' => 'question.order'
+    .field= text_field_tag 'survey[questions][][kind]', '', 'ng-model' => 'question.kind'
+    .field= text_area_tag 'survey[questions][][text]', '', 'ng-model' => 'question.text'
 
     = render 'answers'
 
   .actions
-    %button{ 'ng-click' => 'addQuestion(survey.questions)' } +
-    %button{ 'ng-click' => 'removeQuestion(survey.questions)' } -
+    = link_to '+', '#', 'ng-click' => 'addQuestion(survey.questions)'
+    = link_to '-', '#', 'ng-click' => 'removeQuestion(survey.questions)'

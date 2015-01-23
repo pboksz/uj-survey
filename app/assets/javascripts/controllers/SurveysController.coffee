@@ -13,8 +13,4 @@ angular.module('ujSurvey').controller 'SurveysController', [
 
     $scope.removeAnswer = (answers) ->
       answers.pop() unless answers.length == 1
-
-    $scope.saveSurvey = ->
-      Survey.create { survey: $scope.survey }, (result) ->
-        #TODO handle result
 ]

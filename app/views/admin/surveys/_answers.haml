@@ -2,9 +2,9 @@
   .answer{ 'ng-repeat' => 'answer in question.answers | orderBy:"order"' }
     %h4 Answer {{answer.order + 1}}
 
-    .field
-      %input{ 'ng-model' => 'answer.text' }
+    = hidden_field_tag 'survey[questions][][answers][][order]', '', 'ng-model' => 'answer.order'
+    .field= text_area_tag 'survey[questions][][answers][][text]', '', 'ng-model' => 'answer.text'
 
-  .actions
-    %button{ 'ng-click' => 'addAnswer(question.answers)' } +
-    %button{ 'ng-click' => 'removeAnswer(question.answers)' } -
+    .actions
+      = link_to '+', '#', 'ng-click' => 'addAnswer(question.answers)'
+      = link_to '-', '#', 'ng-click' => 'removeAnswer(question.answers)'

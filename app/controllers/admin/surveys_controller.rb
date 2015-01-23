@@ -7,9 +7,18 @@ class Admin::SurveysController < ApplicationController
 
   end
 
+  def create
+    surveys_repository.create(create_params)
+    redirect_to admin_surveys_path
+  end
+
   private
 
   def surveys_repository
-    @surveys_repository ||= DefaultRepository.new(Survey)
+    @surveys_repository ||= SurveysRepository.new(Survey)
+  end
+
+  def create_params
+    params.require(:survey).permit(:title, :description, questions: [:order, :kind, :text, answers: [:order, :text]])
   end
 end

@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :surveys, only: [:index, :new]
-  end
-
-  namespace :api do
-    resources :surveys, only: [:create]
+    resources :surveys
   end
 
   root 'home#index'

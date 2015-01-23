@@ -1,1 +1,6 @@
 = link_to 'Add survey', new_admin_survey_path
+
+.surveys
+- surveys.each do |survey|
+  .survey
+    %h2= survey
