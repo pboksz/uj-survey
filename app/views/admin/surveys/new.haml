@@ -7,3 +7,6 @@
     %input{ 'ng-model' => 'survey.description' }
 
   = render 'questions'
+
+  .actions
+    %button{ 'ng-click' => 'saveSurvey()' } Save
