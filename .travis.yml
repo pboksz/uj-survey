@@ -12,7 +12,7 @@ deploy:
   provider: heroku
   strategy: git
   api_key:
-    secure: M2Mhwt7nSlgO/p8+kivByb3U123ZGhfzyBGmclRukKaxmFzGESliV0+51bbkCAPllEzpejsToy/XK4KZZm2rmThdGw4dVuZ7NaYwKEHjQjIEKTB7FdYTPIyNjSj3Ma3AKhhF7n8GQ6TrzAph783Rn+bPgPFoeMOYyhfza6bneHY=
+    secure: XqjwqIJzm8zkaPOXOhU5Hi62wScSXwYQ/xXslReHZR57aMNUF1D9ZMSPL7BoV37JahIphF212ERysEWL0HJkkyr0zTMMbje0dWZXAKudxPVQ6Sq5tfBs+/SSBl2Uf5nlBjCJ5KYXh6AaRgEVFRONUuMSM4oy/U2qpASU8FFVbsI=
   app: uj-survey
   on:
     repo: pboksz/uj-survey
