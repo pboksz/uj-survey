@@ -9,5 +9,5 @@
     = render 'answers'
 
   .actions
-    = link_to '+', '#', 'ng-click' => 'addQuestion(survey.questions)'
-    = link_to '-', '#', 'ng-click' => 'removeQuestion(survey.questions)'
+    .add{ 'ng-click' => 'addQuestion(survey.questions)' } +
+    .remove{ 'ng-click' => 'removeQuestion(survey.questions)' } -

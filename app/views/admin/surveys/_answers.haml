@@ -6,5 +6,5 @@
     .field= text_area_tag 'survey[questions][][answers][][text]', '', 'ng-model' => 'answer.text'
 
     .actions
-      = link_to '+', '#', 'ng-click' => 'addAnswer(question.answers)'
-      = link_to '-', '#', 'ng-click' => 'removeAnswer(question.answers)'
+      .add{ 'ng-click' => 'addAnswer(question.answers)' } +
+      .remove{ 'ng-click' => 'removeAnswer(question.answers)' } -
