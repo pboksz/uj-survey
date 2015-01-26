@@ -1,6 +1,7 @@
 angular.module('ujSurvey').controller 'SurveysController', [
   '$scope', 'Survey', 'Question', 'Answer', ($scope, Survey, Question, Answer) ->
-    $scope.survey = Survey.new()
+    $scope.initialize = (survey = Survey.new()) ->
+      $scope.survey = survey
 
     $scope.addQuestion = (questions) ->
       questions.push(Question.new(questions.length))
