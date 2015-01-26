@@ -8,7 +8,16 @@ class Admin::SurveysController < ApplicationController
   end
 
   def create
-    surveys_repository.create(create_params)
+    surveys_repository.create(survey_params)
+    redirect_to admin_surveys_path
+  end
+
+  def edit
+    render :edit, locals: { survey: surveys_repository.find(params[:id]) }
+  end
+
+  def update
+    surveys_repository.update(params[:id], survey_params)
     redirect_to admin_surveys_path
   end
 
@@ -18,7 +27,7 @@ class Admin::SurveysController < ApplicationController
     @surveys_repository ||= SurveysRepository.new(Survey)
   end
 
-  def create_params
+  def survey_params
     params.require(:survey).permit(:title, :description, questions: [:order, :kind, :text, answers: [:order, :text]])
   end
 end

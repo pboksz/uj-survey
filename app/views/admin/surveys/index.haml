@@ -3,5 +3,5 @@
 .surveys
 - surveys.each do |survey|
   .survey
-    %h2= survey.title
+    %h2= link_to survey.title, edit_admin_survey_path(survey)
     %p= survey.description

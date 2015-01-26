@@ -1,0 +1,5 @@
+.survey{ 'ng-controller' => 'SurveysController', 'ng-init' => "initialize(#{survey.to_json})" }
+  %h2 Edit survey
+
+  = form_tag admin_survey_path(survey), method: :put do
+    = render 'survey'

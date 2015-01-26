@@ -2,7 +2,7 @@
   .answer{ 'ng-repeat' => 'answer in question.answers | orderBy:"order"' }
     %h4 Answer {{answer.order + 1}}
 
-    = hidden_field_tag 'survey[questions][][answers][][order]', '', 'ng-model' => 'answer.order'
+    .hidden= text_field_tag 'survey[questions][][answers][][order]', '', 'ng-model' => 'answer.order'
     .field= text_area_tag 'survey[questions][][answers][][text]', '', 'ng-model' => 'answer.text'
 
     .actions

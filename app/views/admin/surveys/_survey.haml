@@ -1,0 +1,6 @@
+.field= text_field_tag 'survey[title]', '', 'ng-model' => 'survey.title'
+.field= text_area_tag 'survey[description]', '', 'ng-model' => 'survey.description'
+
+= render 'questions'
+
+.actions= submit_tag 'Save'
