@@ -4,4 +4,5 @@
 - surveys.each do |survey|
   .survey
     %h2= link_to survey.title, edit_admin_survey_path(survey)
-    %p= survey.description
+    .description= survey.description
+    .delete= link_to 'Delete', admin_survey_path(survey), method: :delete
