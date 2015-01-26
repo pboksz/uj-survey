@@ -28,6 +28,6 @@ class Admin::SurveysController < ApplicationController
   end
 
   def survey_params
-    params.require(:survey).permit(:title, :description, questions: [:order, :kind, :text, answers: [:order, :text]])
+    params.require(:survey).permit(:title, :description, questions: [:id, :order, :kind, :text, answers: [:id, :order, :text]])
   end
 end
