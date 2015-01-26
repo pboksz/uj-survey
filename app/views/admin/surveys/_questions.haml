@@ -4,7 +4,7 @@
 
     .hidden= text_field_tag 'survey[questions][][id]', '', 'ng-model' => 'question.id'
     .hidden= text_field_tag 'survey[questions][][order]', '', 'ng-model' => 'question.order'
-    .field= text_field_tag 'survey[questions][][kind]', '', 'ng-model' => 'question.kind'
+    .field= select_tag 'survey[questions][][kind]', options_from_collection_for_select(Question.kind_options, :first, :last), 'ng-model' => 'question.kind'
     .field= text_area_tag 'survey[questions][][text]', '', 'ng-model' => 'question.text'
 
     = render 'answers'
