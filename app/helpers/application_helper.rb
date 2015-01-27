@@ -11,4 +11,18 @@ module ApplicationHelper
       answer.text
     end
   end
+
+  def active_tag(survey)
+    if survey.active
+      'Active'
+    else
+      message = 'Activating this will de-activate the currently activated survey. Are you sure?'
+      link_to 'Activate', activate_admin_survey_path(survey), data: { confirm: message }
+    end
+  end
+
+  def destroy_tag(survey)
+    message = 'Are you sure you want to delete this survey and all its associated responses?'
+    link_to 'Delete', admin_survey_path(survey), method: :delete, data: { confirm: message }
+  end
 end
