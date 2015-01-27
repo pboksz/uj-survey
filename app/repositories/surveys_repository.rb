@@ -11,9 +11,8 @@ class SurveysRepository < DefaultRepository
   def update(id, attributes)
     question_attributes = attributes.delete(:questions)
     survey = find(id)
-    survey.assign_attributes(attributes)
+    survey.update_attributes(attributes)
     update_questions(survey.questions, question_attributes)
-    survey.save
 
     survey
   end
@@ -53,13 +52,9 @@ class SurveysRepository < DefaultRepository
   end
 
   def edit_submodel(submodels, attributes)
-    if attributes[:id]
-      submodel = submodels.where(id: attributes[:id]).first
-      submodel.update_attributes(attributes)
+    submodel = submodels.where(id: attributes[:id]).first
+    submodel.update_attributes(attributes)
 
-      submodel
-    else
-      new_submodel(submodels, attributes)
-    end
+    submodel
   end
 end

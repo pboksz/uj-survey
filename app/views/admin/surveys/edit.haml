@@ -1,5 +1,27 @@
-.survey{ 'ng-controller' => 'SurveysController', 'ng-init' => "initialize(#{survey.to_json})" }
+.survey
   %h2 Edit survey
 
   = form_tag admin_survey_path(survey), method: :put do
-    = render 'survey'
+    .field= text_field_tag 'survey[title]', survey.title
+    .field= text_area_tag 'survey[description]', survey.description
+
+    .questions
+      - survey.questions.each do |question|
+        .question
+          %h3= "Question #{question.order + 1}"
+
+          .hidden= text_field_tag 'survey[questions][][id]', question.id
+          .hidden= text_field_tag 'survey[questions][][order]', question.order
+          .field= select_tag 'survey[questions][][kind]', options_from_collection_for_select(Question.kind_options, :first, :last, question.kind)
+          .field= text_area_tag 'survey[questions][][text]', question.text
+
+        .answers
+          - question.answers.each do |answer|
+            .answer
+              %h4= "Answer #{answer.order + 1}"
+
+              .hidden= text_field_tag 'survey[questions][][answers][][id]', answer.id
+              .hidden= text_field_tag 'survey[questions][][answers][][order]', answer.order
+              .field= text_area_tag 'survey[questions][][answers][][text]', answer.text
+
+    .actions= submit_tag 'Save'
