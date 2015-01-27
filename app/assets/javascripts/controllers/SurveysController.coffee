@@ -1,5 +1,5 @@
 angular.module('ujSurvey').controller 'SurveysController', [
-  '$scope', 'Survey', 'Question', 'Answer', ($scope, Survey, Question, Answer) ->
+  '$scope', '$document', 'Survey', 'Question', 'Answer', ($scope, $document, Survey, Question, Answer) ->
     $scope.survey = Survey.new()
 
     $scope.addQuestion = (questions) ->
@@ -13,4 +13,8 @@ angular.module('ujSurvey').controller 'SurveysController', [
 
     $scope.removeAnswer = (answers) ->
       answers.pop() unless answers.length == 1
+
+    $scope.answerKeydown = ($event, answers) ->
+      if $event.which == 9 # tab key
+        $scope.addAnswer(answers)
 ]

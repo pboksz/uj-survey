@@ -20,7 +20,7 @@
 
             .hidden= text_field_tag 'survey[questions][][answers][][id]', '', 'ng-model' => 'answer.id'
             .hidden= text_field_tag 'survey[questions][][answers][][order]', '', 'ng-model' => 'answer.order'
-            .field= text_area_tag 'survey[questions][][answers][][text]', '', 'ng-model' => 'answer.text'
+            .field= text_area_tag 'survey[questions][][answers][][text]', '', 'ng-model' => 'answer.text', 'ng-keydown' => 'answerKeydown($event, question.answers)'
 
             .actions
               .add{ 'ng-click' => 'addAnswer(question.answers)' } +
