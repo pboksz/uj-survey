@@ -3,5 +3,7 @@ Rails.application.routes.draw do
     resources :surveys
   end
 
+  resources :surveys, only: [:show, :update]
+
   root 'home#index'
 end

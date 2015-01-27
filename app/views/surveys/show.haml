@@ -1,0 +1,19 @@
+.survey
+  = form_tag survey_path(survey), method: :put do
+    %h2= survey.title
+    .description= survey.description
+
+    .questions
+      - survey.questions.each do |question|
+        .question
+          %h3= question.text
+
+          .answers
+            - question.answers.each do |answer|
+              .answer
+                %h4= answer_tag(question, answer)
+
+    .participant
+      = text_field_tag 'survey[participant][name]'
+
+    .actions= submit_tag 'Save'
