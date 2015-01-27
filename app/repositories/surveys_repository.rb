@@ -1,4 +1,8 @@
 class SurveysRepository < DefaultRepository
+  def active
+    klass.where(active: true).first
+  end
+
   def update(id, attributes)
     responses_attributes = attributes.delete(:responses)
     participant_attributes = attributes.delete(:participant)

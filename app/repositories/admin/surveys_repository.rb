@@ -17,6 +17,11 @@ class Admin::SurveysRepository < DefaultRepository
     survey
   end
 
+  def activate(id)
+    klass.update_all(active: false)
+    find(id).update_attributes(active: true)
+  end
+
   private
 
   def new_submodel(submodels, attributes)

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :surveys
+    resources :surveys do
+      get :activate, on: :member
+    end
   end
 
   resources :surveys, only: [:show, :update]
