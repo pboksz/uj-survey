@@ -15,6 +15,6 @@ angular.module('ujSurvey').controller 'SurveysController', [
       answers.pop() unless answers.length == 1
 
     $scope.answerKeydown = ($event, answers) ->
-      if $event.which == 9 # tab key
+      if !$event.shiftKey && $event.which == 9 # tab
         $scope.addAnswer(answers)
 ]
