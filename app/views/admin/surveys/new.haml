@@ -2,8 +2,8 @@
   %h2 New survey
 
   = form_tag admin_surveys_path, method: :post do
-    .field= text_field_tag 'survey[title]', '', 'ng-model' => 'survey.title'
-    .field= text_area_tag 'survey[description]', '', 'ng-model' => 'survey.description'
+    .field= text_field_tag 'survey[title]', '', placeholder: 'Title...', 'ng-model' => 'survey.title'
+    .field= text_area_tag 'survey[description]', '', placeholder: 'Description...', 'ng-model' => 'survey.description'
 
     .questions
       .question{ 'ng-repeat' => 'question in survey.questions | orderBy:"order"' }
@@ -12,7 +12,7 @@
         .hidden= text_field_tag 'survey[questions][][id]', '', 'ng-model' => 'question.id'
         .hidden= text_field_tag 'survey[questions][][order]', '', 'ng-model' => 'question.order'
         .field= select_tag 'survey[questions][][kind]', options_from_collection_for_select(Question.kind_options, :first, :last), 'ng-model' => 'question.kind'
-        .field= text_area_tag 'survey[questions][][text]', '', 'ng-model' => 'question.text'
+        .field= text_area_tag 'survey[questions][][text]', '', placeholder: 'Question...', 'ng-model' => 'question.text'
 
         .answers
           .answer{ 'ng-repeat' => 'answer in question.answers | orderBy:"order"' }
@@ -20,7 +20,7 @@
 
             .hidden= text_field_tag 'survey[questions][][answers][][id]', '', 'ng-model' => 'answer.id'
             .hidden= text_field_tag 'survey[questions][][answers][][order]', '', 'ng-model' => 'answer.order'
-            .field= text_area_tag 'survey[questions][][answers][][text]', '',
+            .field= text_area_tag 'survey[questions][][answers][][text]', '', placeholder: 'Answer...',
                                   'ng-model' => 'answer.text',
                                   'ng-keydown' => 'answerKeydown($event, question.answers)'
 
