@@ -1,4 +1,4 @@
-.survey{ 'ng-controller' => 'SurveysController', 'ng-init' => 'initialize()' }
+.survey{ 'ng-app' => 'ujSurvey', 'ng-controller' => 'SurveysController' }
   %h2 New survey
 
   = form_tag admin_surveys_path, method: :post do
