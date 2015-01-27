@@ -16,5 +16,6 @@ deploy:
   app: uj-survey
   on:
     repo: pboksz/uj-survey
+  run: rake db:migrate
 notifications:
   email: false
