@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :surveys do
       get :activate, on: :member
     end
+
+    root 'surveys#index'
   end
 
   resources :surveys, only: [:show, :update]
