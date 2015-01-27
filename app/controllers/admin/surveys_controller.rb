@@ -29,7 +29,7 @@ class Admin::SurveysController < ApplicationController
   private
 
   def surveys_repository
-    @surveys_repository ||= SurveysRepository.new(Survey)
+    @surveys_repository ||= Admin::SurveysRepository.new(Survey)
   end
 
   def survey_params
