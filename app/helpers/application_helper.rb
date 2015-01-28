@@ -37,4 +37,8 @@ module ApplicationHelper
   def response_tag(response)
     content_tag :span, response.answers_order, title: response.answers_text
   end
+
+  def csv_tag(survey)
+    link_to 'Download as CSV', admin_survey_path(survey, format: :csv)
+  end
 end

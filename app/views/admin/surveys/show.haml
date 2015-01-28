@@ -2,8 +2,9 @@
   %h2 Survey responses
   %h3= survey.title
   %h4= survey.description
-
   %p= participants_tag(survey)
+
+  .actions= csv_tag(survey)
 
   %table
     %tbody

@@ -13,7 +13,12 @@ class Admin::SurveysController < ApplicationController
   end
 
   def show
-    render :show, locals: { survey: surveys_repository.find(params[:id]) }
+    survey = surveys_repository.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :show, locals: { survey: survey } }
+      format.csv { send_data csv_generator(survey).generate, filename: "UJ_survey_#{survey.title}.csv" }
+    end
   end
 
   def edit
@@ -43,5 +48,9 @@ class Admin::SurveysController < ApplicationController
 
   def survey_params
     params.require(:survey).permit(:title, :description, questions: [:id, :order, :kind, :text, answers: [:id, :order, :text]])
+  end
+
+  def csv_generator(survey)
+    CsvGenerator.new(survey)
   end
 end
