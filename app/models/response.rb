@@ -21,6 +21,6 @@ class Response < ActiveRecord::Base
   end
 
   def answers_repository
-    @answers_repository ||= DefaultRepository.new(question.answers)
+    DefaultRepository.new(question.answers)
   end
 end

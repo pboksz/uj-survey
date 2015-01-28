@@ -26,7 +26,10 @@ class DefaultRepository
   end
 
   def update(id, attributes)
-    find(id).update_attributes(attributes)
+    model = find(id)
+    model.update_attributes(attributes)
+
+    model
   end
 
   def destroy(id)

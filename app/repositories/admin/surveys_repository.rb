@@ -2,7 +2,7 @@ class Admin::SurveysRepository < DefaultRepository
   def create(attributes)
     questions_attribute = attributes.delete(:questions)
     survey = new(attributes)
-    create_questions(survey.questions, questions_attribute)
+    create_questions(questions_repository(survey), questions_attribute)
     survey.save
 
     survey
@@ -10,56 +10,57 @@ class Admin::SurveysRepository < DefaultRepository
 
   def update(id, attributes)
     question_attributes = attributes.delete(:questions)
-    survey = find(id)
-    survey.update_attributes(attributes)
-    update_questions(survey.questions, question_attributes)
+    survey = super(id, attributes)
+    update_questions(questions_repository(survey), question_attributes)
 
     survey
   end
 
   def activate(id)
     klass.update_all(active: false)
-    find(id).update_attributes(active: true)
+    update(id, active: true)
   end
 
   private
 
-  def new_submodel(submodels, attributes)
-    submodels.new(attributes)
+  def edit_submodel(repository, attributes)
+    repository.update(id, attributes)
+    repository.find(id)
   end
 
-  def create_questions(questions, questions_attributes)
+  def create_questions(questions_repository, questions_attributes)
     questions_attributes.each do |question_attributes|
       answers_attributes = question_attributes.delete(:answers)
-      question = new_submodel(questions, question_attributes)
-      create_answers(question.answers, answers_attributes)
+      question = questions_repository.new(question_attributes)
+      create_answers(answers_repository(question), answers_attributes)
     end
   end
 
-  def create_answers(answers, answers_attributes)
+  def create_answers(answers_repository, answers_attributes)
     answers_attributes.each do |answer_attributes|
-      new_submodel(answers, answer_attributes)
+      answers_repository.new(answer_attributes)
     end
   end
 
-  def update_questions(questions, questions_attributes)
+  def update_questions(questions_repository, questions_attributes)
     questions_attributes.each do |question_attributes|
       answers_attributes = question_attributes.delete(:answers)
-      question = edit_submodel(questions, question_attributes)
-      update_answers(question.answers, answers_attributes)
+      question = questions_repository.update(question_attributes[:id], question_attributes)
+      update_answers(answers_repository(question), answers_attributes)
     end
   end
 
-  def update_answers(answers, answers_attributes)
+  def update_answers(answers_repository, answers_attributes)
     answers_attributes.each do |answer_attributes|
-      edit_submodel(answers, answer_attributes)
+      answers_repository.update(answer_attributes[:id], answer_attributes)
     end
   end
 
-  def edit_submodel(submodels, attributes)
-    submodel = submodels.where(id: attributes[:id]).first
-    submodel.update_attributes(attributes)
+  def questions_repository(survey)
+    DefaultRepository.new(survey.questions)
+  end
 
-    submodel
+  def answers_repository(question)
+    DefaultRepository.new(question.answers)
   end
 end

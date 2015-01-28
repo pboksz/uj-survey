@@ -7,8 +7,8 @@ class SurveysRepository < DefaultRepository
     responses_attributes = attributes.delete(:responses)
     participant_attributes = attributes.delete(:participant)
     survey = find(id)
-    update_responses(survey.responses, responses_attributes)
-    update_participant(survey.participants, participant_attributes)
+    update_responses(responses_repository(survey), responses_attributes)
+    update_participant(participants_repository(survey), participant_attributes)
     survey.save
 
     survey
@@ -16,13 +16,21 @@ class SurveysRepository < DefaultRepository
 
   private
 
-  def update_responses(responses, responses_attributes)
+  def update_responses(responses_repository, responses_attributes)
     responses_attributes.each do |question_id, text|
-      responses.new(question_id: question_id, text: text)
+      responses_repository.new(question_id: question_id, text: text)
     end
   end
 
-  def update_participant(participants, participant_attributes)
-    participants.new(participant_attributes)
+  def update_participant(participants_repository, participant_attributes)
+    participants_repository.new(participant_attributes)
+  end
+
+  def responses_repository(survey)
+    DefaultRepository.new(survey.responses)
+  end
+
+  def participants_repository(survey)
+    DefaultRepository.new(survey.participants)
   end
 end
