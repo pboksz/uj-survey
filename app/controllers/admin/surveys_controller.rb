@@ -12,6 +12,10 @@ class Admin::SurveysController < ApplicationController
     redirect_to admin_surveys_path
   end
 
+  def show
+    render :show, locals: { survey: surveys_repository.find(params[:id]) }
+  end
+
   def edit
     render :edit, locals: { survey: surveys_repository.find(params[:id]) }
   end

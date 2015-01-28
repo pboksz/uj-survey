@@ -1,0 +1,14 @@
+.survey
+  %h2 Survey responses
+  %h3= survey.title
+  %h4= survey.description
+
+  %p= participants_tag(survey)
+
+  %table
+    %tbody
+      - survey.questions.each do |question|
+        %tr
+          %td= question_tag(question)
+          - question.responses.each do |response|
+            %td= response_tag(response)

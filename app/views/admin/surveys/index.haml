@@ -3,7 +3,10 @@
 .surveys
 - surveys.each do |survey|
   .survey
-    %h2= link_to survey.title, edit_admin_survey_path(survey)
-    .description= survey.description
-    .active= active_tag(survey)
-    .delete= destroy_tag(survey)
+    %h2= link_to survey.title, admin_survey_path(survey)
+    %p.description= survey.description
+    .actions
+      = link_to 'Show', admin_survey_path(survey)
+      = link_to 'Edit', edit_admin_survey_path(survey)
+      = active_tag(survey)
+      = destroy_tag(survey)
