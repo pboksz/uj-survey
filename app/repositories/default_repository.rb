@@ -13,6 +13,10 @@ class DefaultRepository
     klass.new(attributes)
   end
 
+  def find_all(ids)
+    klass.where(id: ids)
+  end
+
   def find(id)
     klass.where(id: id).first
   end
