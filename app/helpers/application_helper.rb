@@ -25,4 +25,16 @@ module ApplicationHelper
     message = 'Are you sure you want to delete this survey and all its associated responses?'
     link_to 'Delete', admin_survey_path(survey), method: :delete, data: { confirm: message }
   end
+
+  def participants_tag(survey)
+    content_tag :span, "Participants: #{survey.participants.map(&:name).join(', ')}"
+  end
+
+  def question_tag(question)
+    content_tag :span, "Question: #{question.order + 1}", title: question.text
+  end
+
+  def response_tag(response)
+    content_tag :span, response.answers_order, title: response.answers_text
+  end
 end
