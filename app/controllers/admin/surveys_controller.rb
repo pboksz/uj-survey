@@ -1,4 +1,4 @@
-class Admin::SurveysController < ApplicationController
+class Admin::SurveysController < Admin::BaseController
   def index
     render :index, locals: { surveys: surveys_repository.all }
   end
