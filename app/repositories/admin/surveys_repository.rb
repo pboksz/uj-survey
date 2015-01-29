@@ -1,17 +1,17 @@
 class Admin::SurveysRepository < DefaultRepository
   def create(attributes)
-    questions_attribute = attributes.delete(:questions)
+    questions_attributes = attributes.delete(:questions)
     survey = new(attributes)
-    create_questions(questions_repository(survey), questions_attribute)
+    create_questions(questions_repository(survey), questions_attributes) if questions_attributes
     survey.save
 
     survey
   end
 
   def update(id, attributes)
-    question_attributes = attributes.delete(:questions)
+    questions_attributes = attributes.delete(:questions)
     survey = super(id, attributes)
-    update_questions(questions_repository(survey), question_attributes)
+    update_questions(questions_repository(survey), questions_attributes) if questions_attributes
 
     survey
   end
@@ -19,6 +19,10 @@ class Admin::SurveysRepository < DefaultRepository
   def activate(id)
     klass.update_all(active: false)
     update(id, active: true)
+  end
+
+  def deactivate(id)
+    update(id, active: false)
   end
 
   private

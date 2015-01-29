@@ -7,8 +7,8 @@ class SurveysRepository < DefaultRepository
     responses_attributes = attributes.delete(:responses)
     participant_attributes = attributes.delete(:participant)
     survey = find(id)
-    update_responses(responses_repository(survey), responses_attributes)
-    update_participant(participants_repository(survey), participant_attributes)
+    update_responses(responses_repository(survey), responses_attributes) if responses_attributes
+    update_participant(participants_repository(survey), participant_attributes) if participant_attributes
     survey.save
 
     survey
