@@ -17,7 +17,7 @@ class Admin::SurveysController < Admin::BaseController
 
     respond_to do |format|
       format.html { render :show, locals: { survey: survey } }
-      format.csv { send_data csv_generator(survey).generate, filename: "UJ_survey_#{survey.title}.csv" }
+      format.csv { send_data csv_generator(survey).generate, filename: "UJsurvey_#{survey.title}.csv" }
     end
   end
 
