@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     root 'surveys#index'
   end
 
-  resources :surveys, only: [:show, :update]
+  resources :surveys, only: [:show, :update] do
+    get :thanks, on: :collection
+  end
 
   root 'home#index'
 end

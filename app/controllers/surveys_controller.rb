@@ -5,7 +5,11 @@ class SurveysController < ApplicationController
 
   def update
     surveys_repository.update(params[:id], survey_params)
-    redirect_to root_path # TODO thank you page?
+    redirect_to thanks_surveys_path
+  end
+
+  def thanks
+
   end
 
   private
