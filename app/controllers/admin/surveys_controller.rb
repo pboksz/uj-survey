@@ -35,6 +35,11 @@ class Admin::SurveysController < ApplicationController
     redirect_to admin_surveys_path
   end
 
+  def deactivate
+    surveys_repository.deactivate(params[:id])
+    redirect_to admin_surveys_path
+  end
+
   def destroy
     surveys_repository.destroy(params[:id])
     redirect_to admin_surveys_path

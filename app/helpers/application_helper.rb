@@ -14,10 +14,11 @@ module ApplicationHelper
 
   def active_tag(survey)
     if survey.active
-      'Active'
+      message = 'Deactivating this will remove this from the home page. Are you sure?'
+      link_to 'Deactivate', deactivate_admin_survey_path(survey), method: :post, data: { confirm: message }
     else
-      message = 'Activating this will de-activate the currently activated survey. Are you sure?'
-      link_to 'Activate', activate_admin_survey_path(survey), data: { confirm: message }
+      message = 'Activating this will deactivate the currently activated survey. Are you sure?'
+      link_to 'Activate', activate_admin_survey_path(survey), method: :post, data: { confirm: message }
     end
   end
 

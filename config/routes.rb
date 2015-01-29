@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :surveys do
-      get :activate, on: :member
+      post :activate, on: :member
+      post :deactivate, on: :member
     end
 
     root 'surveys#index'
