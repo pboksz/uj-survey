@@ -3,14 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_admin
-  def current_admin
-    @current_admin ||= admins_repository.find(session[:admin_id]) if session[:admin_id]
+  def after_login_path(locale = nil)
+    admin_surveys_path(locale)
   end
 
-  private
-
-  def admins_repository
-    @admins_repository ||= AdminsRepository.new(Admin)
+  def after_logout_path(locale = nil)
+    root_path(locale)
   end
 end

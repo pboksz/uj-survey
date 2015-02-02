@@ -37,6 +37,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    admin_auth (0.2.0)
+      bcrypt (~> 3)
+      haml (~> 4)
+      rails (~> 4)
     arel (6.0.0)
     backports (3.6.4)
     bcrypt (3.1.10)
@@ -242,7 +246,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
+  admin_auth
   byebug
   coffee-rails (~> 4.1.0)
   database_cleaner

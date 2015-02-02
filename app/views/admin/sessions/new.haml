@@ -1,6 +1,0 @@
-.admin-login
-  %h2= 'Admin login'
-  = form_for admin, url: admin_login_path, method: :post do |f|
-    = f.text_field :email, placeholder: 'email@email.com'
-    = f.password_field :password, placeholder: '********'
-    = f.submit 'Login'

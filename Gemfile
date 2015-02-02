@@ -21,8 +21,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Use haml for views
 gem 'haml-rails'
-# Gem for encrypting passwords
-gem 'bcrypt', '~> 3.1.7'
+# Gem for basic admin database authentication
+gem 'admin_auth'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'

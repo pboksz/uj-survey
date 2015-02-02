@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get '/login', to: 'sessions#new'
-    post '/login', to: 'sessions#create'
-    get '/logout', to: 'sessions#destroy'
+  admin_auth_routes
 
+  namespace :admin do
     resources :surveys do
       post :activate, on: :member
       post :deactivate, on: :member
     end
-
-    root 'sessions#new'
   end
 
   resources :surveys, only: [:show, :update] do
