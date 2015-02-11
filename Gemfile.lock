@@ -37,7 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    admin_auth (0.2.0)
+    admin_auth (0.3.0)
       bcrypt (~> 3)
       haml (~> 4)
       rails (~> 4)
