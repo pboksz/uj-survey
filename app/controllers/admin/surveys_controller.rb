@@ -1,4 +1,6 @@
-class Admin::SurveysController < AdminAuth::BaseController
+class Admin::SurveysController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     render :index, locals: { surveys: surveys_repository.all }
   end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  admin_auth_routes
+
   namespace :admin do
     resources :surveys do
       post :activate, on: :member
@@ -9,8 +11,6 @@ Rails.application.routes.draw do
   resources :surveys, only: [:show, :update] do
     get :thanks, on: :collection
   end
-
-  mount AdminAuth::Engine, at: '/admin'
 
   root 'home#index'
 end
